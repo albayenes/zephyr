@@ -302,8 +302,10 @@ static void cdc_acm_read_cb(uint8_t ep, int size, void *priv)
 	}
 
 done:
-	usb_transfer(ep, dev_data->rx_buf, sizeof(dev_data->rx_buf),
-		     USB_TRANS_READ, cdc_acm_read_cb, dev_data);
+	if (size > 0) {
+		usb_transfer(ep, dev_data->rx_buf, sizeof(dev_data->rx_buf),
+			USB_TRANS_READ, cdc_acm_read_cb, dev_data);
+	}
 }
 
 /**
