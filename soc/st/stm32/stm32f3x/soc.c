@@ -31,6 +31,8 @@ void soc_early_init_hook(void)
 	/* At reset, system core clock is set to 8 MHz from HSI */
 	SystemCoreClock = 8000000;
 
+	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
+
 	/* Allow reflashing the board */
 	LL_DBGMCU_EnableDBGSleepMode();
 }
